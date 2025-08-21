@@ -6,9 +6,8 @@ import com.example.gitLive.model.BranchPreview;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/repos")
 @CrossOrigin(origins = "http://localhost:3000") // allow React frontend
 public class RepoController {
 
@@ -21,23 +20,10 @@ public class RepoController {
     }
 
     // Add repo + branch
-    @PostMapping("/repos")
+    @PostMapping
     public BranchPreview addRepo(@RequestParam String repoUrl,
                                  @RequestParam String branchName) throws Exception {
         gitService.cloneOrPull(repoUrl, branchName);
         return previewService.getPreview(branchName).orElseThrow();
-    }
-
-    // List all previews
-    @GetMapping("/previews")
-    public Collection<BranchPreview> getPreviews() {
-        return previewService.getAllPreviews();
-    }
-
-    // Get one preview
-    @GetMapping("/previews/{branch}")
-    public BranchPreview getPreview(@PathVariable String branch) {
-        return previewService.getPreview(branch)
-                .orElseThrow(() -> new RuntimeException("Preview not found"));
     }
 }

@@ -5,7 +5,6 @@ import com.example.gitLive.service.PreviewService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
-
 @RestController
 @RequestMapping("/api/previews")
 public class PreviewController {
@@ -19,5 +18,11 @@ public class PreviewController {
     @GetMapping
     public Collection<BranchPreview> getAll() {
         return previewService.getAllPreviews();
+    }
+
+    @GetMapping("/{branch}")
+    public BranchPreview getOne(@PathVariable String branch) {
+        return previewService.getPreview(branch)
+                .orElseThrow(() -> new RuntimeException("Preview not found"));
     }
 }
