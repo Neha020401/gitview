@@ -10,6 +10,8 @@ function App() {
   const [previews, setPreviews] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(false)
+  const [baseDir, setBaseDir] = useState("")
+
 
   // Fetch previews on load
   useEffect(() => {
@@ -34,8 +36,8 @@ function App() {
     setIsLoading(true)
     try {
       await axios.post("http://localhost:8080/api/repos", null, {
-        params: { repoUrl, branchName },
-      })
+  params: { repoUrl, branchName, baseDir },
+})
       fetchPreviews() // refresh list
       setRepoUrl("")
       setBranchName("")
@@ -97,6 +99,17 @@ function App() {
                   required
                 />
               </div>
+              <div className="form-group">
+  <label>Base Directory</label>
+  <input
+    type="text"
+    value={baseDir}
+    onChange={(e) => setBaseDir(e.target.value)}
+    placeholder="/tmp/gitviewer/"
+    required
+  />
+</div>
+
             </div>
 
             <div className="form-actions">

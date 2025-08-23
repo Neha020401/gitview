@@ -28,7 +28,8 @@ public class WebhookController {
             Map<String, Object> repo = (Map<String, Object>) payload.get("repository");
             String repoUrl = repo.get("clone_url").toString();
 
-            gitService.cloneOrPull(repoUrl, branchName);
+            gitService.cloneOrPull(repoUrl, branchName, "/tmp/gitviewer/");
+
 
             return ResponseEntity.ok("Branch updated and served!");
         } catch (Exception e) {

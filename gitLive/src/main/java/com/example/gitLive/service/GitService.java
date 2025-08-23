@@ -18,11 +18,11 @@ public class GitService {
 
     private static final String BASE_DIR = "/tmp/gitviewer/";  // Where branches will be cloned
 
-    public void cloneOrPull(String repoUrl, String branchName) throws Exception {
-        File targetDir = new File(BASE_DIR + branchName);
+    public void cloneOrPull(String repoUrl, String branchName, String baseDir) throws Exception {
+        File targetDir = new File(baseDir, branchName);
 
         if (!targetDir.exists()) {
-            System.out.println("Cloning branch " + branchName);
+            System.out.println("Cloning branch " + branchName + " into " + baseDir);
             Git.cloneRepository()
                     .setURI(repoUrl)
                     .setBranch(branchName)

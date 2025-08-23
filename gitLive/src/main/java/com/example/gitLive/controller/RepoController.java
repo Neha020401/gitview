@@ -22,8 +22,10 @@ public class RepoController {
     // Add repo + branch
     @PostMapping
     public BranchPreview addRepo(@RequestParam String repoUrl,
-                                 @RequestParam String branchName) throws Exception {
-        gitService.cloneOrPull(repoUrl, branchName);
+                                 @RequestParam String branchName,
+                                 @RequestParam String baseDir) throws Exception {
+        gitService.cloneOrPull(repoUrl, branchName, baseDir);
         return previewService.getPreview(branchName).orElseThrow();
     }
+
 }
