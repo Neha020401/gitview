@@ -23,7 +23,13 @@ public class RepoController {
     @PostMapping
     public BranchPreview addRepo(@RequestParam String repoUrl,
                                  @RequestParam String branchName,
-                                 @RequestParam String baseDir) throws Exception {
+                                 @RequestParam(required = false) String baseDir) throws Exception {
+
+        if (baseDir == null || baseDir.isBlank()) {
+            baseDir = GitService.DEFAULT_BASE_DIR;
+        }
+
+
         gitService.cloneOrPull(repoUrl, branchName, baseDir);
         return previewService.getPreview(branchName).orElseThrow();
     }

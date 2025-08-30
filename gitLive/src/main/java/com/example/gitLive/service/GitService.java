@@ -9,17 +9,23 @@ import java.io.IOException;
 @Service
 public class GitService {
 
-
     private final PreviewService previewService ;
 
     public GitService(PreviewService previewService) {
         this.previewService = previewService;
     }
 
-    private static final String BASE_DIR = "/tmp/gitviewer/";  // Where branches will be cloned
+    private static final String DEFAULT_BASE_DIR = "/tmp/gitviewer/";  // Where branches will be cloned
 
     public void cloneOrPull(String repoUrl, String branchName, String baseDir) throws Exception {
-        File targetDir = new File(baseDir, branchName);
+        File baseDirectory = new File(baseDir);
+
+        if (!baseDirectory.exists()) {
+            System.out.println("Creating base directory: " + baseDir);
+            baseDirectory.mkdirs(); // create if missing
+        }
+
+        File targetDir = new File(baseDirectory, branchName);
 
         if (!targetDir.exists()) {
             System.out.println("Cloning branch " + branchName + " into " + baseDir);

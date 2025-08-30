@@ -36,8 +36,12 @@ function App() {
     setIsLoading(true)
     try {
       await axios.post("http://localhost:8080/api/repos", null, {
-  params: { repoUrl, branchName, baseDir },
-})
+        params: {
+          repoUrl,
+          branchName,
+          baseDir: baseDir.trim() === "" ? undefined : baseDir, // don’t send empty string
+        },
+      })
       fetchPreviews() // refresh list
       setRepoUrl("")
       setBranchName("")
@@ -100,15 +104,15 @@ function App() {
                 />
               </div>
               <div className="form-group">
-  <label>Base Directory</label>
-  <input
-    type="text"
-    value={baseDir}
-    onChange={(e) => setBaseDir(e.target.value)}
-    placeholder="/tmp/gitviewer/"
-    required
-  />
-</div>
+                <label>Base Directory</label>
+                <input
+                  type="text"
+                  value={baseDir}
+                  onChange={(e) => setBaseDir(e.target.value)}
+                  placeholder="/tmp/gitviewer/"
+                  required
+                />
+              </div>
 
             </div>
 
