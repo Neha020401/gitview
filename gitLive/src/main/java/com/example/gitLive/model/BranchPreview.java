@@ -8,8 +8,6 @@ public class BranchPreview {
     private String previewUrl;
     private int port;
 
-    // Constructor
-
     public BranchPreview(String branchName, String previewUrl, int port) {
         this.branchName = branchName;
         this.previewUrl = previewUrl;

@@ -39,14 +39,18 @@ function App() {
         params: {
           repoUrl,
           branchName,
-          baseDir: baseDir.trim() === "" ? undefined : baseDir, // don’t send empty string
+          baseDir: baseDir.trim() === "" ? undefined : baseDir, 
         },
       })
-      fetchPreviews() // refresh list
+      fetchPreviews() 
       setRepoUrl("")
       setBranchName("")
     } catch (err) {
-      alert("Failed to add repo: " + err.message)
+      if (err.response && err.response.data && err.response.data.error) {
+        alert("Failed to add repo: " + err.response.data.error);
+      } else {
+        alert("Failed to add repo: " + err.message);
+      }
     } finally {
       setIsLoading(false)
     }

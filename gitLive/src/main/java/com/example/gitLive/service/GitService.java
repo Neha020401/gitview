@@ -15,7 +15,7 @@ public class GitService {
         this.previewService = previewService;
     }
 
-    private static final String DEFAULT_BASE_DIR = "/tmp/gitviewer/";  // Where branches will be cloned
+    public static final String DEFAULT_BASE_DIR = "/tmp/gitviewer/";  // Where branches will be cloned
 
     public void cloneOrPull(String repoUrl, String branchName, String baseDir) throws Exception {
         File baseDirectory = new File(baseDir);

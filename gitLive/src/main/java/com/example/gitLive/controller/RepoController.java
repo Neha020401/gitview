@@ -19,19 +19,24 @@ public class RepoController {
         this.previewService = previewService;
     }
 
-    // Add repo + branch
     @PostMapping
     public BranchPreview addRepo(@RequestParam String repoUrl,
                                  @RequestParam String branchName,
                                  @RequestParam(required = false) String baseDir) throws Exception {
-
         if (baseDir == null || baseDir.isBlank()) {
             baseDir = GitService.DEFAULT_BASE_DIR;
         }
 
+        System.out.println("Received request:");
+        System.out.println("  Repo URL: " + repoUrl);
+        System.out.println("  Branch: " + branchName);
+        System.out.println("  BaseDir: " + baseDir);
 
         gitService.cloneOrPull(repoUrl, branchName, baseDir);
-        return previewService.getPreview(branchName).orElseThrow();
+
+        return previewService.getPreview(branchName)
+                .orElseThrow(() -> new RuntimeException("Preview not available after cloning"));
     }
+
 
 }
