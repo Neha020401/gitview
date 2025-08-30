@@ -13,7 +13,6 @@ function App() {
   const [baseDir, setBaseDir] = useState("")
 
 
-  // Fetch previews on load
   useEffect(() => {
     fetchPreviews()
   }, [])
@@ -69,7 +68,8 @@ function App() {
               <div className="logo-icon">
                 <span>🚀</span>
               </div>
-              <h1>Git Branch Previewer</h1>
+              <h1>Git Branch Previewer </h1>
+              <p style={{color:"white"}}>{"(For now Only for react Projects)"}</p>
             </div>
             <button className="theme-toggle" onClick={toggleTheme}>
               {isDarkMode ? "☀️" : "🌙"}
