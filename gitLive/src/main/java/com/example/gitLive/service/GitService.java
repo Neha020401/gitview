@@ -8,15 +8,15 @@ import java.io.File;
 @Service
 public class GitService {
 
-    public static final String DEFAULT_BASE_DIR = "/tmp/gitviewer/";
+    // Use system temp directory for cross-platform compatibility
+    public static final String DEFAULT_BASE_DIR = System.getProperty("java.io.tmpdir") + File.separator + "gitviewer"
+            + File.separator;
 
-    private final PreviewService previewService;
-
-    public GitService(PreviewService previewService) {
-        this.previewService = previewService;
+    public GitService() {
+        // No dependencies needed - clone only functionality
     }
 
-    public void cloneOrPull(String repoUrl, String branchName, String baseDir) throws Exception {
+    public String cloneOrPull(String repoUrl, String branchName, String baseDir) throws Exception {
         File baseDirectory = new File(baseDir);
 
         if (!baseDirectory.exists()) {
@@ -35,31 +35,16 @@ public class GitService {
                     .setBranch(branchName)
                     .setDirectory(targetDir)
                     .call();
+            System.out.println("Clone completed successfully!");
         } else {
             System.out.println("Pulling branch " + branchName + " in " + targetDir.getAbsolutePath());
             try (Git git = Git.open(targetDir)) {
                 git.checkout().setName(branchName).call();
                 git.pull().call();
             }
+            System.out.println("Pull completed successfully!");
         }
 
-        // After code is updated locally, register it for preview
-        serveDirectory(targetDir, branchName);
-    }
-
-    /**
-     * Generic "preview registration" – no tech-stack assumptions.
-     * Let PreviewService decide how to expose this directory.
-     */
-    private void serveDirectory(File branchDir, String branchName) {
-        // You can still keep the "port" idea if your UI expects it,
-        // or treat it as a logical ID.
-        int port = 3000 + Math.abs(branchName.hashCode() % 1000);
-        System.out.println("Registering preview for branch " + branchName +
-                " at " + branchDir.getAbsolutePath() + " (logical port " + port + ")");
-
-        // If PreviewService.addPreview expects a Process because before we started
-        // a dev server, you can pass null or overload the method.
-        previewService.addPreview(branchName, port, null);
+        return targetDir.getAbsolutePath();
     }
 }

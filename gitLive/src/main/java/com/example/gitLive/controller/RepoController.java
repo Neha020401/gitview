@@ -1,28 +1,26 @@
 package com.example.gitLive.controller;
 
 import com.example.gitLive.service.GitService;
-import com.example.gitLive.service.PreviewService;
-import com.example.gitLive.model.BranchPreview;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/repos")
-@CrossOrigin(origins = "http://localhost:3000") // allow React frontend
+@CrossOrigin(origins = "*") // allow any frontend
 public class RepoController {
 
     private final GitService gitService;
-    private final PreviewService previewService;
 
-    public RepoController(GitService gitService, PreviewService previewService) {
+    public RepoController(GitService gitService) {
         this.gitService = gitService;
-        this.previewService = previewService;
     }
 
     @PostMapping
-    public BranchPreview addRepo(@RequestParam String repoUrl,
-                                 @RequestParam String branchName,
-                                 @RequestParam(required = false) String baseDir) throws Exception {
+    public Map<String, String> addRepo(@RequestParam String repoUrl,
+            @RequestParam String branchName,
+            @RequestParam(required = false) String baseDir) throws Exception {
         if (baseDir == null || baseDir.isBlank()) {
             baseDir = GitService.DEFAULT_BASE_DIR;
         }
@@ -32,11 +30,12 @@ public class RepoController {
         System.out.println("  Branch: " + branchName);
         System.out.println("  BaseDir: " + baseDir);
 
-        gitService.cloneOrPull(repoUrl, branchName, baseDir);
+        String clonedPath = gitService.cloneOrPull(repoUrl, branchName, baseDir);
 
-        return previewService.getPreview(branchName)
-                .orElseThrow(() -> new RuntimeException("Preview not available after cloning"));
+        Map<String, String> response = new HashMap<>();
+        response.put("status", "success");
+        response.put("branchName", branchName);
+        response.put("clonedPath", clonedPath);
+        return response;
     }
-
-
 }
