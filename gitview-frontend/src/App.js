@@ -55,6 +55,15 @@ function App() {
     }
   }
 
+   const handleStop = async (branch) => {
+    try {
+      await axios.delete(`http://localhost:8080/api/previews/${branch}`)
+      fetchPreviews()
+    } catch (err) {
+      alert("Failed to stop preview: " + err.message)
+    }
+  }
+
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode)
   }
@@ -155,7 +164,7 @@ function App() {
               <p>Add your first repository to get started</p>
             </div>
           ) : (
-            <div className="previews-grid">
+             <div className="previews-grid">
               {previews.map((preview, index) => (
                 <div key={index} className="preview-item">
                   <div className="preview-info">
@@ -166,17 +175,22 @@ function App() {
                     </div>
                   </div>
 
-                  <a href={preview.url} target="_blank" rel="noreferrer" className="preview-link">
-                    <span>View Preview</span>
-                    <svg className="external-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                  </a>
+                  <div className="preview-actions">
+                    <a href={preview.url} target="_blank" rel="noreferrer" className="preview-link">
+                      <span>View Preview</span>
+                      <svg className="external-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </a>
+                    <button className="stop-btn" onClick={() => handleStop(preview.branchName)}>
+                      ⏹ Stop
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>
