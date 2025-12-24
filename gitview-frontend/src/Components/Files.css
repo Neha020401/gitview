@@ -1,0 +1,469 @@
+/* ========================================
+   Files Component Styles
+   Classic Suited + Futuristic Design
+   ======================================== */
+
+/* CSS Variables - Futuristic Palette for Files */
+:root {
+    --files-accent: #00d4ff;
+    --files-accent-glow: rgba(0, 212, 255, 0.3);
+    --files-secondary: #a855f7;
+    --files-tertiary: #6366f1;
+    --files-glass-bg: rgba(255, 255, 255, 0.05);
+    --files-glass-border: rgba(255, 255, 255, 0.1);
+    --files-text-primary: #ffffff;
+    --files-text-secondary: #a0aec0;
+    --files-text-muted: #718096;
+    --files-danger: #ff4757;
+    --files-danger-glow: rgba(255, 71, 87, 0.3);
+    --files-success: #00ff88;
+}
+
+/* ========================================
+   Previews Card - Glass Morphism
+   ======================================== */
+.previews-card {
+    background: var(--files-glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 1.5rem;
+    border: 1px solid var(--files-glass-border);
+    padding: 2.5rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    box-shadow: 0 8px 32px rgba(168, 85, 247, 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: slideInUp 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.previews-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--files-secondary), transparent);
+    opacity: 0.5;
+}
+
+.previews-card:hover {
+    border-color: var(--files-secondary);
+    box-shadow:
+        0 16px 48px rgba(168, 85, 247, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-4px);
+}
+
+/* Section Title */
+.previews-card .section-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--files-text-primary);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    letter-spacing: -0.01em;
+}
+
+.preview-icon {
+    background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(99, 102, 241, 0.1));
+    color: var(--files-secondary);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.preview-count {
+    margin-left: auto;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--files-accent);
+    background: rgba(0, 212, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    border: 1px solid var(--files-accent-glow);
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--files-accent-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 25px var(--files-accent-glow);
+    }
+}
+
+/* ========================================
+   Empty State - Elegant Placeholder
+   ======================================== */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.empty-icon {
+    width: 6rem;
+    height: 6rem;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(168, 85, 247, 0.1));
+    border: 1px solid var(--files-glass-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2.5rem;
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--files-text-primary);
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, var(--files-text-primary), var(--files-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.empty-state p {
+    color: var(--files-text-muted);
+    font-size: 1.1rem;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   Previews Grid - Card Layout
+   ======================================== */
+.previews-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.preview-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--files-glass-border);
+    border-radius: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.preview-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--files-accent), var(--files-secondary));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.preview-item:hover {
+    border-color: var(--files-accent);
+    background: rgba(0, 212, 255, 0.03);
+    transform: translateX(8px);
+    box-shadow:
+        -4px 0 20px var(--files-accent-glow),
+        0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.preview-item:hover::before {
+    opacity: 1;
+}
+
+/* Preview Info Section */
+.preview-info {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.preview-avatar {
+    width: 3.5rem;
+    height: 3.5rem;
+    background: linear-gradient(135deg, var(--files-accent), var(--files-secondary), var(--files-tertiary));
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 1.25rem;
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.preview-avatar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.preview-item:hover .preview-avatar {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(0, 212, 255, 0.4);
+}
+
+.preview-details h3 {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--files-text-primary);
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.01em;
+}
+
+.preview-details p {
+    font-size: 0.875rem;
+    color: var(--files-text-muted);
+    font-style: italic;
+}
+
+/* ========================================
+   Preview Actions - Buttons
+   ======================================== */
+.preview-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.preview-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(168, 85, 247, 0.1));
+    color: var(--files-accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--files-accent-glow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.preview-link:hover {
+    background: linear-gradient(135deg, var(--files-accent), var(--files-secondary));
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 25px var(--files-accent-glow),
+        0 0 40px rgba(0, 212, 255, 0.2);
+}
+
+.external-icon {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.preview-link:hover .external-icon {
+    transform: translate(2px, -2px);
+}
+
+/* Stop Button */
+.stop-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(255, 71, 87, 0.1);
+    color: var(--files-danger);
+    border: 1px solid var(--files-danger-glow);
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stop-btn:hover {
+    background: var(--files-danger);
+    color: white;
+    border-color: var(--files-danger);
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 25px var(--files-danger-glow),
+        0 0 30px rgba(255, 71, 87, 0.3);
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+@media (max-width: 768px) {
+    .previews-card {
+        padding: 1.5rem;
+        margin: 1rem;
+        border-radius: 1rem;
+    }
+
+    .previews-card .section-title {
+        flex-wrap: wrap;
+        font-size: 1.35rem;
+    }
+
+    .preview-count {
+        margin-left: 0;
+        margin-top: 0.5rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .preview-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+        padding: 1.25rem;
+    }
+
+    .preview-item:hover {
+        transform: translateY(-4px);
+    }
+
+    .preview-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .preview-link,
+    .stop-btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .empty-icon {
+        width: 5rem;
+        height: 5rem;
+        font-size: 2rem;
+    }
+}
+
+/* ========================================
+   Stagger Animation for List Items
+   ======================================== */
+.preview-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.preview-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.preview-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.preview-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.preview-item:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.preview-item {
+    animation: slideInRight 0.6s ease-out backwards;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Subtle Scan Line Effect */
+.previews-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--files-accent), transparent);
+    animation: scanLine 4s ease-in-out infinite;
+    opacity: 0.3;
+}
+
+@keyframes scanLine {
+    0% {
+        top: 0;
+    }
+
+    50% {
+        top: 100%;
+    }
+
+    100% {
+        top: 0;
+    }
+}
