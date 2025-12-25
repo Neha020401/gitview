@@ -20,6 +20,137 @@
 }
 
 /* ========================================
+   Page Container - Full Screen Dark Background
+   ======================================== */
+.files-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0d1b2a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.files-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(ellipse at 20% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.files-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* ========================================
+   Files Header Section
+   ======================================== */
+.files-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.files-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.files-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--files-text-primary) 0%, var(--files-accent) 50%, var(--files-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.files-header-subtitle {
+    color: var(--files-text-secondary);
+    font-size: 1.25rem;
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+/* Back Link */
+.back-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--files-glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--files-glass-border);
+    border-radius: 0.75rem;
+    color: var(--files-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: var(--files-accent);
+    transform: translateX(-4px);
+    box-shadow: 0 4px 20px var(--files-accent-glow);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    background: var(--files-glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--files-glass-border);
+    border-radius: 50%;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.15);
+    border-color: var(--files-accent);
+    box-shadow:
+        0 0 30px var(--files-accent-glow),
+        0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================
    Previews Card - Glass Morphism
    ======================================== */
 .previews-card {

@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import './Home.css'
 
 const Home = () => {
@@ -132,6 +133,9 @@ const Home = () => {
                   </>
                 )}
               </button>
+              <Link to="/dir" className="view-files-btn">
+                📁 View Cloned Files
+              </Link>
             </div>
           </form>
         </div>

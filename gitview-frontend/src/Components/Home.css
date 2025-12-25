@@ -365,6 +365,33 @@
   background: linear-gradient(135deg, #4a5568, #2d3748);
 }
 
+/* View Files Button */
+.view-files-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: var(--home-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--home-glass-border);
+  border-radius: 0.75rem;
+  color: var(--home-accent);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.view-files-btn:hover {
+  background: rgba(0, 212, 255, 0.15);
+  border-color: var(--home-accent);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px var(--home-accent-glow);
+}
+
 /* Spinner Animation */
 .spinner {
   width: 1.25rem;
