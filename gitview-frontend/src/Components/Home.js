@@ -68,7 +68,6 @@ const Home = () => {
                 <span>🚀</span>
               </div>
               <h1>Git Branch Previewer </h1>
-              <p style={{ color: "white" }}>{"(For now Only for react Projects)"}</p>
             </div>
             <button className="theme-toggle" onClick={toggleTheme}>
               {isDarkMode ? "☀️" : "🌙"}
