@@ -3,8 +3,9 @@
    Classic Suited + Futuristic Design
    ======================================== */
 
-/* CSS Variables - Futuristic Palette for Files */
-:root {
+/* CSS Variables - Dark Theme (Default) */
+:root,
+.dark-theme {
     --files-accent: #00d4ff;
     --files-accent-glow: rgba(0, 212, 255, 0.3);
     --files-secondary: #a855f7;
@@ -17,14 +18,40 @@
     --files-danger: #ff4757;
     --files-danger-glow: rgba(255, 71, 87, 0.3);
     --files-success: #00ff88;
+    --files-page-bg: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0d1b2a 100%);
+    --files-page-overlay-1: rgba(0, 212, 255, 0.08);
+    --files-page-overlay-2: rgba(168, 85, 247, 0.08);
+    --files-card-shadow: rgba(168, 85, 247, 0.15);
+    --files-empty-state-h3: linear-gradient(135deg, #ffffff, #00d4ff);
+}
+
+/* CSS Variables - Light Theme */
+.light-theme {
+    --files-accent: #0891b2;
+    --files-accent-glow: rgba(8, 145, 178, 0.3);
+    --files-secondary: #9333ea;
+    --files-tertiary: #4f46e5;
+    --files-glass-bg: rgba(255, 255, 255, 0.85);
+    --files-glass-border: rgba(0, 0, 0, 0.1);
+    --files-text-primary: #1e293b;
+    --files-text-secondary: #475569;
+    --files-text-muted: #64748b;
+    --files-danger: #dc2626;
+    --files-danger-glow: rgba(220, 38, 38, 0.3);
+    --files-success: #16a34a;
+    --files-page-bg: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+    --files-page-overlay-1: rgba(8, 145, 178, 0.05);
+    --files-page-overlay-2: rgba(147, 51, 234, 0.05);
+    --files-card-shadow: rgba(0, 0, 0, 0.1);
+    --files-empty-state-h3: linear-gradient(135deg, #1e293b, #0891b2);
 }
 
 /* ========================================
-   Page Container - Full Screen Dark Background
+   Page Container - Full Screen Background
    ======================================== */
 .files-page {
     min-height: 100vh;
-    background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0d1b2a 100%);
+    background: var(--files-page-bg);
     position: relative;
     overflow: hidden;
 }
@@ -37,8 +64,8 @@
     right: 0;
     bottom: 0;
     background:
-        radial-gradient(ellipse at 20% 20%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 50%);
+        radial-gradient(ellipse at 20% 20%, var(--files-page-overlay-1) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, var(--files-page-overlay-2) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -162,7 +189,7 @@
     padding: 2.5rem;
     margin: 2rem auto;
     max-width: 1200px;
-    box-shadow: 0 8px 32px rgba(168, 85, 247, 0.15);
+    box-shadow: 0 8px 32px var(--files-card-shadow);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     animation: slideInUp 0.8s ease-out;
     position: relative;
@@ -300,7 +327,7 @@
     font-weight: 600;
     color: var(--files-text-primary);
     margin-bottom: 0.75rem;
-    background: linear-gradient(135deg, var(--files-text-primary), var(--files-accent));
+    background: var(--files-empty-state-h3);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
