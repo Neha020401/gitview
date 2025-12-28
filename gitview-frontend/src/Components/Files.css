@@ -625,3 +625,543 @@
         top: 0;
     }
 }
+
+/* ========================================
+   Tech Stack Badges
+   ======================================== */
+.tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid;
+}
+
+.tech-icon {
+    font-size: 0.9rem;
+}
+
+.tech-badge-react {
+    background: rgba(97, 218, 251, 0.15);
+    color: #61dafb;
+    border-color: rgba(97, 218, 251, 0.3);
+}
+
+.tech-badge-nextjs {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--files-text-primary);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.tech-badge-vite {
+    background: rgba(189, 52, 254, 0.15);
+    color: #bd34fe;
+    border-color: rgba(189, 52, 254, 0.3);
+}
+
+.tech-badge-node {
+    background: rgba(104, 160, 99, 0.15);
+    color: #68a063;
+    border-color: rgba(104, 160, 99, 0.3);
+}
+
+.tech-badge-vue {
+    background: rgba(65, 184, 131, 0.15);
+    color: #41b883;
+    border-color: rgba(65, 184, 131, 0.3);
+}
+
+.tech-badge-angular {
+    background: rgba(221, 0, 49, 0.15);
+    color: #dd0031;
+    border-color: rgba(221, 0, 49, 0.3);
+}
+
+.tech-badge-express {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--files-text-secondary);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.tech-badge-python {
+    background: rgba(55, 118, 171, 0.15);
+    color: #3776ab;
+    border-color: rgba(55, 118, 171, 0.3);
+}
+
+.tech-badge-flask {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--files-text-primary);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.tech-badge-django {
+    background: rgba(9, 46, 32, 0.3);
+    color: #44b78b;
+    border-color: rgba(68, 183, 139, 0.3);
+}
+
+.tech-badge-fastapi {
+    background: rgba(0, 150, 136, 0.15);
+    color: #009688;
+    border-color: rgba(0, 150, 136, 0.3);
+}
+
+.tech-badge-java {
+    background: rgba(237, 139, 0, 0.15);
+    color: #ed8b00;
+    border-color: rgba(237, 139, 0, 0.3);
+}
+
+.tech-badge-static {
+    background: rgba(255, 165, 0, 0.15);
+    color: #ffa500;
+    border-color: rgba(255, 165, 0, 0.3);
+}
+
+.tech-badge-unknown {
+    background: rgba(150, 150, 150, 0.15);
+    color: #969696;
+    border-color: rgba(150, 150, 150, 0.3);
+}
+
+/* ========================================
+   Status Badges
+   ======================================== */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.status-running {
+    background: rgba(0, 255, 136, 0.15);
+    color: var(--files-success);
+    animation: pulse 2s infinite;
+}
+
+.status-stopped {
+    background: rgba(150, 150, 150, 0.15);
+    color: var(--files-text-muted);
+}
+
+.status-installing,
+.status-starting {
+    background: rgba(0, 212, 255, 0.15);
+    color: var(--files-accent);
+    animation: blink 1s infinite;
+}
+
+.status-error {
+    background: rgba(255, 71, 87, 0.15);
+    color: var(--files-danger);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* ========================================
+   Project Meta & URL Info
+   ======================================== */
+.project-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.preview-url-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+    background: rgba(0, 255, 136, 0.08);
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.url-label {
+    font-size: 0.75rem;
+    color: var(--files-text-muted);
+}
+
+.preview-url {
+    color: var(--files-success);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.preview-url:hover {
+    text-decoration: underline;
+}
+
+.port-info {
+    background: rgba(0, 212, 255, 0.15);
+    color: var(--files-accent);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.install-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.install-label {
+    font-size: 0.75rem;
+    color: var(--files-text-muted);
+}
+
+.install-info code {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--files-accent);
+    font-family: 'Fira Code', 'Monaco', monospace;
+}
+
+/* ========================================
+   Run Button
+   ======================================== */
+.run-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 212, 255, 0.1));
+    color: var(--files-success);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.run-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--files-success), #00d4ff);
+    color: white;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 25px rgba(0, 255, 136, 0.3),
+        0 0 40px rgba(0, 255, 136, 0.2);
+}
+
+.run-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--files-success);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ========================================
+   Delete Button
+   ======================================== */
+.delete-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 71, 87, 0.08);
+    color: var(--files-danger);
+    border: 1px solid rgba(255, 71, 87, 0.2);
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.delete-btn:hover:not(:disabled) {
+    background: var(--files-danger);
+    color: white;
+    border-color: var(--files-danger);
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 25px var(--files-danger-glow),
+        0 0 30px rgba(255, 71, 87, 0.3);
+}
+
+.delete-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ========================================
+   Running State for Preview Item
+   ======================================== */
+.preview-item.running {
+    border-color: rgba(0, 255, 136, 0.3);
+    background: rgba(0, 255, 136, 0.03);
+}
+
+.preview-item.running::before {
+    opacity: 1;
+    background: linear-gradient(180deg, var(--files-success), var(--files-accent));
+}
+
+/* ========================================
+   Delete Confirmation Modal
+   ======================================== */
+.delete-confirm-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+.delete-confirm-modal {
+    background: var(--files-glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--files-glass-border);
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    animation: slideInUp 0.3s ease;
+}
+
+.delete-confirm-modal h4 {
+    color: var(--files-danger);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.delete-confirm-modal p {
+    color: var(--files-text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.delete-confirm-modal strong {
+    color: var(--files-text-primary);
+}
+
+.delete-confirm-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.cancel-btn {
+    padding: 0.75rem 1.5rem;
+    background: var(--files-glass-bg);
+    color: var(--files-text-secondary);
+    border: 1px solid var(--files-glass-border);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--files-accent);
+}
+
+.confirm-delete-btn {
+    padding: 0.75rem 1.5rem;
+    background: var(--files-danger);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.confirm-delete-btn:hover {
+    background: #ff6b7a;
+    box-shadow: 0 4px 15px var(--files-danger-glow);
+}
+
+/* ========================================
+   Permission Guide Modal
+   ======================================== */
+.permission-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease;
+}
+
+.permission-modal {
+    background: var(--files-glass-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--files-glass-border);
+    border-radius: 1rem;
+    padding: 2rem;
+    max-width: 450px;
+    width: 90%;
+    animation: slideInUp 0.3s ease;
+}
+
+.permission-modal h3 {
+    color: var(--files-accent);
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.permission-modal p {
+    color: var(--files-text-secondary);
+    margin-bottom: 1rem;
+}
+
+.permission-modal ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.permission-modal li {
+    color: var(--files-text-primary);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--files-glass-border);
+    font-size: 0.9rem;
+}
+
+.permission-modal li:last-child {
+    border-bottom: none;
+}
+
+.permission-close-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: linear-gradient(135deg, var(--files-accent), var(--files-secondary));
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.permission-close-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--files-accent-glow);
+}
+
+/* ========================================
+   Loading State
+   ======================================== */
+.loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--files-glass-border);
+    border-top-color: var(--files-accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+.loading-state p {
+    color: var(--files-text-secondary);
+}
+
+/* ========================================
+   Light Theme Overrides for New Elements
+   ======================================== */
+.light-theme .tech-badge-nextjs {
+    background: rgba(0, 0, 0, 0.1);
+    color: #000;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.light-theme .tech-badge-express {
+    background: rgba(0, 0, 0, 0.05);
+    color: #333;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .tech-badge-flask {
+    background: rgba(0, 0, 0, 0.05);
+    color: #333;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .install-info code {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--files-accent);
+}
+
+.light-theme .delete-confirm-modal,
+.light-theme .permission-modal {
+    background: rgba(255, 255, 255, 0.95);
+}
