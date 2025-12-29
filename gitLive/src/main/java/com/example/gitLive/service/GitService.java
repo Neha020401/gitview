@@ -32,14 +32,14 @@ public class GitService {
     /**
      * DEFAULT_BASE_DIR - The default directory where repositories will be cloned.
      * 
-     * Uses the system's temp directory for cross-platform compatibility:
-     * - Windows: C:\Users\{username}\AppData\Local\Temp\gitviewer\
-     * - Linux/Mac: /tmp/gitviewer/
+     * Uses the user's Downloads folder for better accessibility:
+     * - Windows: C:\Users\{username}\Downloads\gitviewer\
+     * - Linux/Mac: /home/{username}/Downloads/gitviewer/
      * 
      * File.separator ensures correct path separators for each OS (\ or /)
      */
-    public static final String DEFAULT_BASE_DIR = System.getProperty("java.io.tmpdir") + File.separator + "gitviewer"
-            + File.separator;
+    public static final String DEFAULT_BASE_DIR = System.getProperty("user.home") + File.separator + "Downloads"
+            + File.separator + "gitviewer" + File.separator;
 
     /**
      * Default constructor.
