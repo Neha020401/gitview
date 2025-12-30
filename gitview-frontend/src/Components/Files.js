@@ -38,6 +38,7 @@ const Files = () => {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(null) // branchName or null
   const [runningAction, setRunningAction] = useState(null)
   const [showPermissionGuide, setShowPermissionGuide] = useState(false)
+  const [showRunInfoPopup, setShowRunInfoPopup] = useState(null) // { branchName, techStack } or null
 
   // ========================================
   // THEME MANAGEMENT
@@ -75,8 +76,9 @@ const Files = () => {
   // PROJECT ACTIONS
   // ========================================
 
-  const handleRun = async (branchName) => {
+  const handleRun = async (branchName, project) => {
     setRunningAction(branchName)
+    setShowRunInfoPopup({ branchName, techStack: project.techStack })
     try {
       const res = await axios.post(`http://localhost:8080/api/projects/${branchName}/run`)
       if (res.data.success) {
@@ -98,6 +100,7 @@ const Files = () => {
       }
     } finally {
       setRunningAction(null)
+      setShowRunInfoPopup(null)
     }
   }
 
@@ -220,6 +223,28 @@ const Files = () => {
           </div>
         )}
 
+        {/* Run Info Modal - Shows when project is starting */}
+        {showRunInfoPopup && (
+          <div className="run-info-overlay">
+            <div className="run-info-modal">
+              <div className="run-info-spinner"></div>
+              <h3>🚀 Starting {showRunInfoPopup.branchName}</h3>
+              <p>Please wait while we prepare your project.</p>
+              <div className="run-info-details">
+                <div className="info-item">
+                  <span className="info-icon">📦</span>
+                  <span>Installing dependencies...</span>
+                </div>
+                <div className="info-item">
+                  <span className="info-icon">⚡</span>
+                  <span>Starting {showRunInfoPopup.techStack?.displayName || 'dev'} server...</span>
+                </div>
+              </div>
+              <p className="run-info-note">This may take a minute depending on your project size.</p>
+            </div>
+          </div>
+        )}
+
         {/* Projects Section */}
         <div className="previews-card">
           <h2 className="section-title">
@@ -322,7 +347,7 @@ const Files = () => {
                     ) : (
                       <button
                         className="run-btn"
-                        onClick={() => handleRun(project.branchName)}
+                        onClick={() => handleRun(project.branchName, project)}
                         disabled={runningAction === project.branchName || project.techStack?.type === 'unknown'}
                       >
                         {runningAction === project.branchName ? (
