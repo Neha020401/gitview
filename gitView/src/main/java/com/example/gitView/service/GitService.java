@@ -103,9 +103,11 @@ public class GitService {
             }
         }
 
-        // Step 2: Define the target directory for this specific branch
-        // Each branch gets its own folder: baseDir/branchName
-        File targetDir = new File(baseDirectory, branchName);
+        // Step 2: Extract repo name from URL and create proper directory structure
+        // Structure: baseDir/repoName/branchName
+        String repoName = extractRepoName(repoUrl);
+        File repoDir = new File(baseDirectory, repoName);
+        File targetDir = new File(repoDir, branchName);
 
         // Step 3: Clone or Pull based on whether directory exists
         if (!targetDir.exists()) {
@@ -141,5 +143,20 @@ public class GitService {
 
         // Step 4: Return the path where the repository now exists
         return targetDir.getAbsolutePath();
+    }
+
+    /**
+     * Extract repository name from Git URL
+     * Examples:
+     * - "https://github.com/Neha020401/WanderWith.git" → "WanderWith"
+     * - "https://github.com/facebook/react.git" → "react"
+     * - "git@github.com:user/repo.git" → "repo"
+     */
+    private String extractRepoName(String repoUrl) {
+        String name = repoUrl.substring(repoUrl.lastIndexOf('/') + 1);
+        if (name.endsWith(".git")) {
+            name = name.substring(0, name.length() - 4);
+        }
+        return name;
     }
 }

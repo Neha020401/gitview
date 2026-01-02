@@ -3,6 +3,9 @@ package com.example.gitView.model;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import jakarta.persistence.Embeddable; // Use javax.persistence.Embeddable for older versions
+
+
 
 /**
  * ============================================================================
@@ -27,6 +30,7 @@ import lombok.NoArgsConstructor;
  * 
  * ============================================================================
  */
+@Embeddable // This allows TechStack to be embedded in Project
 @Data // Lombok: Generates getters, setters, toString, equals, hashCode
 @AllArgsConstructor // Lombok: Generates constructor with all fields
 @NoArgsConstructor // Lombok: Generates empty constructor (needed for JSON serialization)

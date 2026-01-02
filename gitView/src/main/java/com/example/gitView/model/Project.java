@@ -3,6 +3,8 @@ package com.example.gitView.model;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import jakarta.persistence.*; // Use javax.persistence.* if using older Spring Boot
+
 
 /**
  * ============================================================================
@@ -31,6 +33,8 @@ import lombok.NoArgsConstructor;
  * 
  * ============================================================================
  */
+@Entity // Mark as JPA entity
+@Table(name = "projects") // Optional: specify table name
 @Data // Lombok: Generates getters, setters, toString, equals, hashCode
 @AllArgsConstructor // Lombok: Generates constructor with all fields
 @NoArgsConstructor // Lombok: Generates empty constructor
@@ -41,6 +45,7 @@ public class Project {
      * This is the Git branch name used when cloning
      * Example: "main", "develop", "feature-login"
      */
+    @Id // Primary key
     private String branchName;
 
     /**
@@ -48,6 +53,7 @@ public class Project {
      * Example: "C:\\Users\\username\\AppData\\Local\\Temp\\gitviewer\\main"
      * Used when running commands and deleting files
      */
+    @Column(nullable = false)
     private String projectPath;
 
     /**
@@ -55,6 +61,7 @@ public class Project {
      * Example: "https://github.com/facebook/react.git"
      * Stored for reference and display purposes
      */
+    @Column(nullable = false)
     private String repoUrl;
 
     /**
@@ -63,6 +70,8 @@ public class Project {
      * 
      * @see TechStack
      */
+    // Embed TechStack as JSON or separate fields
+    @Embedded
     private TechStack techStack;
 
     /**
@@ -102,6 +111,7 @@ public class Project {
      * Contains details about what went wrong
      * null when there's no error
      */
+    @Column(length = 1000) // Allow longer error messages
     private String errorMessage;
 
     /**

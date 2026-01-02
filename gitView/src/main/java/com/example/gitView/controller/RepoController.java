@@ -36,14 +36,33 @@ public class RepoController {
 
         String clonedPath = gitService.cloneOrPull(repoUrl, branchName, baseDir);
 
+        // Create unique project ID: repoName-branchName
+        // This prevents conflicts when cloning different repos with same branch name
+        String repoName = extractRepoName(repoUrl);
+        String projectId = repoName + "-" + branchName;
+
         // Register the project with tech stack detection
-        Project project = projectRunner.registerProject(branchName, clonedPath, repoUrl);
+        Project project = projectRunner.registerProject(projectId, clonedPath, repoUrl);
 
         Map<String, Object> response = new HashMap<>();
         response.put("status", "success");
-        response.put("branchName", branchName);
+        response.put("branchName", projectId); // Return the unique project ID
         response.put("clonedPath", clonedPath);
         response.put("techStack", project.getTechStack());
         return response;
+    }
+
+    /**
+     * Extract repository name from Git URL
+     * Examples:
+     * - "https://github.com/Neha020401/WanderWith.git" → "WanderWith"
+     * - "https://github.com/facebook/react.git" → "react"
+     */
+    private String extractRepoName(String repoUrl) {
+        String name = repoUrl.substring(repoUrl.lastIndexOf('/') + 1);
+        if (name.endsWith(".git")) {
+            name = name.substring(0, name.length() - 4);
+        }
+        return name;
     }
 }
